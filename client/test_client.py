@@ -30,7 +30,6 @@ print(f"[*] Connecting to {SERVER_HOST}:{SERVER_PORT}...")
 # connect to the server
 s.connect((SERVER_HOST, SERVER_PORT))
 print("[+] Connected.")
-
 # prompt the client for a name
 name = input("Enter your name: ")
 
@@ -58,5 +57,5 @@ while True:
     # finally, send the message
     s.send(to_send.encode())
 
-    # close the socket
-    s.close()
+# close the socket
+s.close()

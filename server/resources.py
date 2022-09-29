@@ -3,6 +3,8 @@
 #2022-09-23
 #Internal Python Chat projekt
 
+# Not working
+
 import socket
 from threading import Thread
 

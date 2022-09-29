@@ -16,7 +16,7 @@ s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 s.bind((SERVER_HOST, SERVER_PORT))
 # listen for upcoming connections
 s.listen(5)
-print(f"[*] Listening as {SERVER_HOST}:{SERVER_PORT}")
+print(f"[:)] hey wassup, listening as {SERVER_HOST}:{SERVER_PORT} this time")
 
 def listen_for_client(cs):
     """
@@ -41,6 +41,7 @@ def listen_for_client(cs):
             # and send the message
             client_socket.send(msg.encode())
 
+
 while True:
     # we keep listening for new connections all the time
     client_socket, client_address = s.accept()
@@ -54,8 +55,8 @@ while True:
     # start the thread
     t.start()
 
-    # close client sockets
-    for cs in client_sockets:
-        cs.close()
-    # close server socket
-    s.close()
+# close client sockets
+for cs in client_sockets:
+   cs.close()
+# close server socket
+s.close()
