@@ -58,5 +58,5 @@ while True:
     # finally, send the message
     s.send(to_send.encode())
 
-# close the socket
-s.close()
+    # close the socket
+    s.close()
