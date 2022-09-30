@@ -9,13 +9,13 @@ separator_token = "<SEP>" # we will use this to separate the client name & messa
 # initialize list/set of all connected client's sockets
 client_sockets = set()
 # create a TCP socket
-s = socket.socket()
+sock = socket.socket()
 # make the port as reusable port
-s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 # bind the socket to the address we specified
-s.bind((SERVER_HOST, SERVER_PORT))
+sock.bind((SERVER_HOST, SERVER_PORT))
 # listen for upcoming connections
-s.listen(5)
+sock.listen(5)
 print(f"[:)] hey wassup, listening as {SERVER_HOST}:{SERVER_PORT} this time")
 
 def listen_for_client(cs):
@@ -27,10 +27,10 @@ def listen_for_client(cs):
         try:
             # keep listening for a message from `cs` socket
             msg = cs.recv(1024).decode()
-        except Exception as e:
+        except Exception as error:
             # client no longer connected
             # remove it from the set
-            print(f"[!] Error: {e}")
+            print(f"[!] Error: {error}")
             client_sockets.remove(cs)
         else:
             # if we received a message, replace the <SEP> 
@@ -44,7 +44,7 @@ def listen_for_client(cs):
 
 while True:
     # we keep listening for new connections all the time
-    client_socket, client_address = s.accept()
+    client_socket, client_address = sock.accept()
     print(f"[+] {client_address} connected.")
     # add the new connected client to connected sockets
     client_sockets.add(client_socket)
@@ -56,7 +56,7 @@ while True:
     t.start()
 
 # close client sockets
-for cs in client_sockets:
-   cs.close()
+# for cs in client_sockets:
+#    cs.close()
 # close server socket
-s.close()
+# s.close()

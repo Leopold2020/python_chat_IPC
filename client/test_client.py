@@ -33,6 +33,10 @@ print("[+] Connected.")
 # prompt the client for a name
 name = input("Enter your name: ")
 
+
+if name.lower() == "tech priest":
+    pass
+
 def listen_for_messages():
     while True:
         message = s.recv(1024).decode()
